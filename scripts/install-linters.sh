@@ -49,3 +49,6 @@ cd -
 wget "http://downloads.sourceforge.net/project/pmd/pmd/5.1.3/pmd-bin-5.1.3.zip?r=&ts=`date +%s`&use_mirror=ufpr"
 unzip pmd-bin-*
 mv pmd-bin-5.1.3 pmd-bin
+
+# Nix
+curl https://nixos.org/nix/install | sh

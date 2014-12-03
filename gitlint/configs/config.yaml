@@ -282,3 +282,15 @@ pmd:
   - "-d"
   filter: "{filename}:(?P<line>{lines}):\\s+(?P<message>.+)"
   installation: "Go to http://pmd.sourceforge.net/pmd-5.1.1/installing.html"
+
+# Nix files
+# Sample output:
+# error: syntax error, unexpected LET, expecting ':' or '@', at /home/skreft/code/issue127/default.nix:12:1
+nix:
+  command: nix-instantiate
+  extensions:
+  - .nix
+  arguments:
+  - "--parse"
+  filter: "(?P<message>.+), at {filename}:(?P<line>{lines}):(?P<column>\\d+)"
+  installation: "Execute: curl https://nixos.org/nix/install | sh. Or go to https://nixos.org/nix/."

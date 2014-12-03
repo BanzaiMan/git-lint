@@ -52,3 +52,4 @@ mv pmd-bin-5.1.3 pmd-bin
 
 # Nix
 curl https://nixos.org/nix/install | sh
+source $HOME/.nix-profile/etc/profile.d/nix.sh

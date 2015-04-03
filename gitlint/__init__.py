@@ -132,7 +132,10 @@ def format_comment(comment_data):
 
     # Severity and Id information
     if 'severity' in comment_data:
-        format_pieces.append('{severity}: ')
+        if comment_data['severity'].lower() == 'error':
+            format_pieces.append(termcolor.colored('ERROR', 'red', attrs=('bold',)) + ': ')
+        else:
+            format_pieces.append('{severity}: ')
 
     if 'message_id' in comment_data:
         format_pieces.append('[{message_id}]: ')

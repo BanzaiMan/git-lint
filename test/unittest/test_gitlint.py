@@ -503,14 +503,14 @@ class GitLintTest(unittest.TestCase):
                             'column': 2,
                             'message': 'message',
                          }))
-        self.assertEqual('line 1, col 2: Error: message',
+        self.assertEqual('line 1, col 2: \x1b[1m\x1b[31mERROR\x1b[0m: message',
                          gitlint.format_comment({
                             'line': 1,
                             'column': 2,
                             'severity': 'Error',
                             'message': 'message',
                          }))
-        self.assertEqual('line 1, col 2: Error: [not-used]: message',
+        self.assertEqual('line 1, col 2: \x1b[1m\x1b[31mERROR\x1b[0m: [not-used]: message',
                          gitlint.format_comment({
                             'line': 1,
                             'column': 2,
@@ -524,7 +524,7 @@ class GitLintTest(unittest.TestCase):
                             'message_id': 'not-used',
                             'message': 'message',
                          }))
-        self.assertEqual('line 1, col 2: Error: [not-used]: ',
+        self.assertEqual('line 1, col 2: \x1b[1m\x1b[31mERROR\x1b[0m: [not-used]: ',
                          gitlint.format_comment({
                             'line': 1,
                             'column': 2,

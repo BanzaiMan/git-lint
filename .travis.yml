@@ -1,4 +1,7 @@
+sudo: true
+
 language: python
+
 python:
   - "2.7"
   - "3.2"
@@ -6,17 +9,45 @@ python:
   - "3.4"
   # The JSON e2e test fails because, the output and exceptions are different
   #- "pypy"
-# command to install dependencies
+
+addons:
+  apt:
+    packages: # Only whitelisted packages from https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
+      - curl
+      - build-essential
+      - mercurial
+      - libjpeg-turbo-progs
+      - unzip
+      - php-pear
+      - pngcrush
+      - optipng
+      - checkstyle
+      - tidy
+
+before_install:
+  - # NodeJS
+  - nvm install 0.12
+  - export PATH=/usr/lib/node_modules/git-lint/node_modules/.bin:$PATH # NodeJS modules bin
+  - # PMD - F*cking Java doesn't know how to do packaging properly ?!
+  - curl -L -O http://sourceforge.net/projects/pmd/files/pmd/5.3.0/pmd-bin-5.3.0.zip
+  - unzip pmd-bin-5.3.0.zip
+  - export PATH=`pwd`/pmd-bin-5.3.0/bin:$PATH
+
 install:
-  - "pip install ."
-  - "pip install coveralls"
-  - "bash scripts/install-linters.sh"
-# command to run tests
+  - bundle install --gemfile ./scripts/dependencies/Gemfile
+  - pip install -r ./scripts/dependencies/requirements.txt
+  - sudo pear install PHP_CodeSniffer
+  - # Use freshly installed NPM
+  - # Can't set PATH to /usr/bin due to Python/Virtualenv and Bundler/RVM
+  - sudo npm install -g ./scripts/dependencies/
+
 before_script:
-  - export PATH=$PATH:$PWD/pmd-bin/bin
-  - git config --global user.email "john@example.com"
-  - git config --global user.name "John Doe"
-  - "echo -e '[ui]\nusername = John Doe <john@example.com>' >> ~/.hgrc"
-script: "python -R setup.py nosetests"
+  - git config --global user.email "travis@example.com"
+  - git config --global user.name "Travis CI"
+  - export PATH=`pwd`/scripts/custom_linters:$PATH
+
+script:
+ - python -R setup.py nosetests
+
 after_success:
-  coveralls
+  - coveralls

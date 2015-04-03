@@ -149,11 +149,13 @@ class LintersTest(unittest.TestCase):
                         'comments': [
                             {
                                 'line': 5,
-                                'message': '5'
+                                'message': '5',
+                                'severity': 'ERROR'
                             },
                             {
                                 'line': 7,
-                                'message': '7'
+                                'message': '7',
+                                'severity': 'ERROR'
                             },
                         ],
                     },
@@ -165,19 +167,23 @@ class LintersTest(unittest.TestCase):
                         'comments': [
                             {
                                 'line': 1,
-                                'message': '1'
+                                'message': '1',
+                                'severity': 'ERROR'
                             },
                             {
                                 'line': 5,
-                                'message': '5'
+                                'message': '5',
+                                'severity': 'ERROR'
                             },
                             {
                                 'line': 7,
-                                'message': '7'
+                                'message': '7',
+                                'severity': 'ERROR'
                             },
                             {
                                 'line': 9,
-                                'message': '9'
+                                'message': '9',
+                                'severity': 'ERROR'
                             },
                         ],
                     },

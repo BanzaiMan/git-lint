@@ -201,12 +201,9 @@ tidy:
   command: tidy-wrapper.sh
   requirements:
   - tidy
-  - remove_template.py
   - grep
   arguments:
   - "-qe"
-  - "--drop-empty-elements"
-  - "false"
   installation: "Visit https://w3c.github.io/tidy-html5/"
   filter: "^line (?P<line>{lines}) column (?P<column>\\d+) - (?P<severity>[^:]+): (?P<message>.+)"
 

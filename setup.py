@@ -47,7 +47,7 @@ setup(
         'template-remover',
         'docutils',
     ],
-    tests_require=['nose>=1.3', 'mock'],
+    setup_requires=[],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',

@@ -250,6 +250,7 @@ TODOS and Possible Features
 Changelog
 =========
 
+
 v0.0.6 (2014-09-08)
 -------------------
 
